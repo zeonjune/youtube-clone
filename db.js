@@ -1,67 +1,19 @@
-export const videos = [
-	{
-		id: 324393,
-		title: 'Video awesome',
-		description: 'This is something I love',
-		views: 24,
-		videoFile:
-			'https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4',
-		creator: {
-			id: 121212,
-			name: 'Nicolas',
-			email: 'nico@las.com',
-		},
-	},
-	{
-		id: 3224393,
-		title: 'Video zzang',
-		description: 'This is something I love',
-		views: 24,
-		videoFile:
-			'https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4',
-		creator: {
-			id: 121212,
-			name: 'Nicolas',
-			email: 'nico@las.com',
-		},
-	},
-	{
-		id: 3243393,
-		title: 'Video haha',
-		description: 'This is something I love',
-		views: 24,
-		videoFile:
-			'https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4',
-		creator: {
-			id: 121212,
-			name: 'Nicolas',
-			email: 'nico@las.com',
-		},
-	},
-	{
-		id: 3243493,
-		title: 'Video wow',
-		description: 'This is something I love',
-		views: 24,
-		videoFile:
-			'https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4',
-		creator: {
-			id: 121212,
-			name: 'Nicolas',
-			email: 'nico@las.com',
-		},
-	},
-	{
-		id: 3245393,
-		title: 'Video good',
-		description: 'This is something I love',
-		views: 24,
-		videoFile:
-			'https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4',
-		creator: {
-			id: 121212,
-			name: 'Nicolas',
-			email: 'nico@las.com',
-		},
-	},
-];
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+dotenv.config();
+
+mongoose.connect(process.env.MONGO_URL, {
+	useNewUrlParser: true,
+	useFindAndModify: false,
+	useUnifiedTopology: true,
+});
+
+const db = mongoose.connection;
+
+const handleOpen = () => console.log('✔connect to DB');
+
+const handleError = (error) =>
+	console.log(`✖ Error on DB Connection :${error}`);
+
+db.once('open', handleOpen);
+db.on('error', handleError);
